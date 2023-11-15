@@ -6,8 +6,8 @@ module.exports = function (user) {
   // per evitare di esporre dati sensibili
   const payload = {
     id: user.id,
-    username: user.username,
-    email: user.email
+    username: user.username
+    // email: user.email
   }
 
   // sign() richiede 3 argomenti:

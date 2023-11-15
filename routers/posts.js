@@ -2,6 +2,9 @@ const express = require("express");
 const multer = require("multer");
 const router = express.Router();
 const postsController = require("../controllers/posts");
+const authMiddleware = require("../middlewares/authenticate");
+
+// router.use(authMiddleware);
 
 
 // index
@@ -12,7 +15,7 @@ router.get("/create", postsController.create)
 
 // store
 // router.post("/", express.urlencoded({ extended: true }), postsController.store);
-router.post("/", multer({ dest: "public/imgs/posts" }).single("image"), postsController.store);
+router.post("/", authMiddleware, multer({ dest: "public/imgs/posts" }).single("image"), postsController.store);
 
 
 // show
