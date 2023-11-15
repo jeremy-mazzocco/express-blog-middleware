@@ -7,18 +7,24 @@ const jwt = require("jsonwebtoken");
  * @param {*} next
  */
 module.exports = function (req, res, next) {
- 
+
   const bearerToken = req.header("Authorization");
 
   if (!bearerToken) {
-    return res.status(401).send("Missing Token");
+    throw new Error('Token assente');
   }
 
-  const token = bearerToken.split(" ")[1];
- 
-  const jwtPayload = jwt.verify(token, process.env.JWT_SECRET);
+  try {
+    const token = bearerToken.split(" ")[1];
 
-  req["user"] = jwtPayload
+    const jwtPayload = jwt.verify(token, process.env.JWT_SECRET);
 
-  next();
+    req["user"] = jwtPayload
+
+    next();
+
+  } catch (error) {
+
+    res.status(401).json({ error: 'Token di autenticazione non valido' });
+  }
 };

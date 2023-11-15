@@ -6,7 +6,6 @@ const authMiddleware = require("../middlewares/authenticate");
 
 // router.use(authMiddleware);
 
-
 // index
 router.get("/", postsController.index)
 
