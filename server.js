@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 
 const dashboardController = require("./controllers/dashboard");
 const postsRouter = require("./routers/posts");
+const authRouter = require("./routers/auth");
 const NotFoundMiddleware = require("./middlewares/NotFound");
 
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(express.static("public"));
 
 app.get("/", dashboardController.index);
 app.use("/posts", postsRouter);
+app.use("/", authRouter)
 
 
 app.use(NotFoundMiddleware)
