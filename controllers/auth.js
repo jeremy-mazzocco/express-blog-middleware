@@ -19,6 +19,7 @@ function login(req, res) {
     return;
   }
 
+  // creazione del token
   const token = generateJWT(user);
 
   res.json({
@@ -26,6 +27,7 @@ function login(req, res) {
     'token': token,
   });
 }
+
 
 module.exports = {
   login,

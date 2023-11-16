@@ -16,9 +16,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", dashboardController.index);
-app.use("/posts", postsRouter);
-app.use("/", authRouter)
 
+app.use("/", authRouter)
+app.use("/posts", postsRouter);
+
+
+// middleware degl errori - qui
 
 app.use(NotFoundMiddleware)
 
